@@ -8,19 +8,20 @@ void main(void)
 	fflush(stdin);
 	system("cls");
 	/*Declaration of some local variables*/
-	uint8_t u8_ExpCkeck=0,u8_next;
+	uint8_t u8_ExpCkeck=0;
+	uint8_t u8_next;
 	data1.maxTransAmount=5000.0; // Assign the max trans value
 	while(1)
 	{
 		printf("Please Enter Card Data:\n");
 		printf("Please Enter the Card Holder Name: ");
-		gets((uint8_t*)customer.cardHolderName);
+		gets((char*)customer.cardHolderName);
 		
 		printf("Please Enter the Primary Account Number: ");
-		gets((uint8_t*)customer.primaryAccountNumber);
+		gets((char*)customer.primaryAccountNumber);
 		
 		printf("Please card Expiry Date'MM/YY': ");
-		gets((uint8_t*)customer.cardExpirationDate);
+		gets((char*)customer.cardExpirationDate);
 		
 		printf("Please Enter Terminal Data:\n");
 		printf("Please Enter the transaction Amount: ");
@@ -35,7 +36,7 @@ void main(void)
 		{
 			/*if no -> ask for the transaction date*/
 			printf("Please Enter transaction Date'DD/MM/YY': ");
-			gets((uint8_t*)data1.transactionDate);
+			gets((char*)data1.transactionDate);
 			
 			/*Check if the card is expired or not and return the result*/
 			u8_ExpCkeck=Check_cardExp(customer,data1);
@@ -127,7 +128,10 @@ uint8_t Check_cardExp(ST_cardData_t customer,ST_terminalData_t data1)
 /*Implementation of sorting elements*/
 void Check_sorting(ST_accountBalance_t* g_arr,uint8_t gu8_size)
 {
-	uint8_t u8_i,u8_j,u8_z,u8_flag;
+	uint8_t u8_i;
+	uint8_t u8_j;
+	uint8_t u8_z;
+	uint8_t u8_flag;
 	ST_accountBalance_t u8_temp;
 	for(u8_i=0;u8_i<(gu8_size-1);u8_i++)
 	{
@@ -173,7 +177,8 @@ void Check_sorting(ST_accountBalance_t* g_arr,uint8_t gu8_size)
 /*Implementation of the check server and return result*/
 uint8_t Check_server(ST_accountBalance_t* g_arr,ST_terminalData_t data1,ST_cardData_t customer)
 {
-	uint8_t u8_i,u8_j;
+	uint8_t u8_i;
+	uint8_t u8_j;
 	for(u8_i=0;u8_i<(gu8_size-1);u8_i++)
 	{
 		if(customer.primaryAccountNumber[0]==g_arr[u8_i].primaryAccountNumber[0])
