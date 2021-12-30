@@ -1,9 +1,12 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<stdint.h>
 #include"Declarations.h"
 
 void main(void)
 {
+	fflush(stdin);
+	system("cls");
 	/*Declaration of some local variables*/
 	uint8_t u8_ExpCkeck=0,u8_next;
 	data1.maxTransAmount=5000.0; // Assign the max trans value
@@ -11,13 +14,13 @@ void main(void)
 	{
 		printf("Please Enter Card Data:\n");
 		printf("Please Enter the Card Holder Name: ");
-		gets(customer.cardHolderName);
+		gets((uint8_t*)customer.cardHolderName);
 		
 		printf("Please Enter the Primary Account Number: ");
-		gets(customer.primaryAccountNumber);
+		gets((uint8_t*)customer.primaryAccountNumber);
 		
 		printf("Please card Expiry Date'MM/YY': ");
-		gets(customer.cardExpirationDate);
+		gets((uint8_t*)customer.cardExpirationDate);
 		
 		printf("Please Enter Terminal Data:\n");
 		printf("Please Enter the transaction Amount: ");
@@ -32,7 +35,7 @@ void main(void)
 		{
 			/*if no -> ask for the transaction date*/
 			printf("Please Enter transaction Date'DD/MM/YY': ");
-			gets(data1.transactionDate);
+			gets((uint8_t*)data1.transactionDate);
 			
 			/*Check if the card is expired or not and return the result*/
 			u8_ExpCkeck=Check_cardExp(customer,data1);
